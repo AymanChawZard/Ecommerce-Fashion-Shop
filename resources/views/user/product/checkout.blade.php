@@ -150,26 +150,14 @@
                                 </ul>
                                 <ul class="checkout__total__all">
                                     <li>Subtotal <span>$ {{ $totalPrice }}</span></li>
-                                    <li>Total <span>$ {{ $totalPrice }}</span></li>
+                                    <li>Total <span id="totalPrice">$ {{ $totalPrice }}</span></li>
                                 </ul>
                                 <p>Lorem ipsum dolor sit amet, consectetur adip elit, sed do eiusmod tempor incididunt
                                     ut labore et dolore magna aliqua.</p>
-                                <div class="checkout__input__checkbox">
-                                    <label for="payment">
-                                        Check Payment
-                                        <input type="checkbox" id="payment" checked>
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
-                                <div class="checkout__input__checkbox">
-                                    <label for="paypal">
-                                        Paypal
-                                        <input class="payment" type="checkbox"
-                                            id="paypal" name="payment" value="paypal">
-                                        <span class="checkmark"></span>
-                                        <div class="text-danger" id="paymentErrorMessage"></div>
-                                    </label>
-                                </div>
+                                {{-- <div class="my-3">
+                                    <a href="{{ route('user#payment') }}" class="text-info">Payment with Visa/Master
+                                        Card</a>
+                                </div> --}}
                                 <button type="submit" class="site-btn">PLACE ORDER</button>
                             </div>
                         </div>
@@ -211,7 +199,6 @@
             $phone = $parentNode.find('.phone').val();
             $email = $parentNode.find('.email').val();
             $notes = $parentNode.find('.notes').val();
-            $payment = $('input[name="payment"]:checked').val();
             $password = $parentNode.find('.password').val();
             $orderList = [];
 
@@ -236,13 +223,13 @@
                 'phone': $phone,
                 'email': $email,
                 'notes': $notes,
-                'payment': $payment,
                 'password': $password,
                 'order_list': $orderList
             };
 
             var spans = $('.text-danger');
             spans.text('');
+            price = Number($parentNode.find('#totalPrice').text().replace('$',''));
 
             $.ajax({
                 type: 'POST',
@@ -250,9 +237,15 @@
                 data: $data,
                 dataType: 'json',
                 success: function(response) {
-                    if (response.status == 'success')
-                    {
-                        window.location.href = '/';
+                    if (response.status == 'success') {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Ordered Successfully',
+                            confirmButtonText: 'Visa',
+                            text: 'You can complete the payment with visa card.'
+                        }).then((result) => {
+                            window.location.href = '/user/order/payment/' + price;
+                        });
                     }
                 },
                 error: function(response) {
@@ -266,10 +259,9 @@
                     $('#phoneErrorMessage').text(response.responseJSON.errors.phone);
                     $('#emailErrorMessage').text(response.responseJSON.errors.email);
                     $('#passwordErrorMessage').text(response.responseJSON.errors.password);
-                    $('#paymentErrorMessage').text(response.responseJSON.errors.payment);
                 },
             })
-        })
+        });
     })
 </script>
 

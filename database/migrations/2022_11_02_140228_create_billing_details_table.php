@@ -25,7 +25,6 @@ return new class extends Migration
             $table->string('phone',20);
             $table->string('email');
             $table->string('notes')->nullable();
-            $table->string('payment');
             $table->bigInteger('order_code');
             $table->timestamps();
         });

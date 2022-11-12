@@ -20,7 +20,6 @@ class BillingDetails extends Model
         'phone',
         'email',
         'notes',
-        'payment',
         'order_code'
     ];
 

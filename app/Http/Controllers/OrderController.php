@@ -197,7 +197,6 @@ class OrderController extends Controller
             'phone' => 'required',
             'email' => 'required',
             'password' => ['required', new PasswordSame],
-            'payment' => 'required',
         ];
 
         Validator::make($request->all(), $validationRules)->validate();
@@ -217,7 +216,6 @@ class OrderController extends Controller
             'phone' => $request->phone,
             'email' => $request->email,
             'notes' => $request->notes,
-            'payment' => $request->payment,
             'order_code' => $orderCode
         ];
     }

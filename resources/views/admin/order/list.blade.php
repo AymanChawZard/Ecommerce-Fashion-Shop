@@ -40,7 +40,6 @@
                                                 <th> Client Name </th>
                                                 <th> Order No </th>
                                                 <th> Product Cost </th>
-                                                <th> Payment Mode </th>
                                                 <th> Billing Details </th>
                                                 <th> Start Date </th>
                                                 <th> StatusChange </th>
@@ -74,8 +73,6 @@
                                                     </td>
                                                     <td> {{ $order->order_code }} </td>
                                                     <td> $ {{ $order->total_price }} </td>
-                                                    <td class="text-uppercase"> {{ $order->billingDetails->payment }}
-                                                    </td>
                                                     <td> <a
                                                             href="{{ route('order#details', $order->order_code) }}">Click</a>
                                                     </td>

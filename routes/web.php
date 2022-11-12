@@ -11,6 +11,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\StripePaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -125,6 +126,7 @@ Route::middleware(['user_auth','unlogin_auth'])->group(function () {
             Route::post('/products/order', [OrderController::class, 'order']);
             Route::get('/order/cancel', [OrderController::class, 'orderCancel']);
             Route::get('/shop',[AjaxController::class, 'shopPage']);
+            // Route::get('/payment',)
         });
 
         //wish list
@@ -139,6 +141,8 @@ Route::middleware(['user_auth','unlogin_auth'])->group(function () {
         Route::prefix('order')->group(function () {
             Route::get('/checkout', [OrderController::class, 'checkoutPage'])->name('order#checkout');
             Route::get('/details/{code}', [OrderController::class, 'orderDetailsPage'])->name('user#orderDetails');
+            Route::get('/payment/{price}', [StripePaymentController::class, 'paymentPage'])->name('user#payment');
+            Route::post('/payment/{price}', [StripePaymentController::class, 'stripePost'])->name('stripe.post');
         });
 
         //contact
