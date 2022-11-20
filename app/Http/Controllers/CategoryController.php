@@ -29,7 +29,7 @@ class CategoryController extends Controller
     //category list page
     public function list()
     {
-        $categories = Category::get();
+        $categories = Category::paginate(5);
         return view('admin.category.list', compact('categories'));
     }
 

@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -21,7 +22,7 @@ class ProductController extends Controller
                             $query->where('products.name','like','%'.request('key').'%');
                         })
                         ->orderBy('products.created_at','desc')
-                        ->get();
+                        ->paginate(5);
         return view('admin.product.list', compact('products'));
     }
 
@@ -66,7 +67,7 @@ class ProductController extends Controller
             Storage::delete('public/product_img/' . $oldImg);
 
             $newImg = uniqid().$request->file('image')->getClientOriginalName();
-            $request->file('image')->storeAs('/public/product_img', $newImg);
+            $request->file('image')->storeAs('public/product_img', $imageName);
             $data['image'] = $newImg;
         }
 
@@ -80,7 +81,7 @@ class ProductController extends Controller
         $image = Product::where('id',$id)->first()->image;
 
         Product::where('id',$id)->delete();
-        Storage::delete('public/product_img/' . $image);
+        Storage::delete('public/product_img/' . $oldImg);
 
         return redirect()->route('product#list');
     }

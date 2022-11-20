@@ -117,9 +117,7 @@ Route::middleware(['user_auth','unlogin_auth'])->group(function () {
         Route::prefix('ajax')->group(function () {
             Route::get('/products/list', [AjaxController::class, 'productList'])->name('ajax#productList');
             Route::get('/product/cart', [AjaxController::class, 'addToCart'])->name('ajax#addToCart');
-            Route::get('/shop/product/cart', [AjaxController::class, 'addToCart']);
             Route::get('/cart/product/delete', [AjaxController::class, 'removeFromCart'])->name('ajax#removeFromCart');
-            Route::get('/product/wishlist/add', [WishlistController::class, 'addToWishlistAjax']);
             Route::get('/wishlist/product/cart', [AjaxController::class, 'addToCartnRemove']);
             Route::get('/wishlist/delete', [AjaxController::class, 'deleteWishlist']);
             Route::get('/order/checkout/', [AjaxController::class, 'checkoutPage']);
@@ -151,6 +149,13 @@ Route::middleware(['user_auth','unlogin_auth'])->group(function () {
 
     });
 
+});
+
+Route::prefix('user')->group(function () {
+    Route::prefix('ajax')->group(function () {
+        Route::get('/product/wishlist/add', [WishlistController::class, 'addToWishlistAjax']);
+        Route::get('/shop/product/cart', [AjaxController::class, 'addToCart']);
+    });
 });
 
 

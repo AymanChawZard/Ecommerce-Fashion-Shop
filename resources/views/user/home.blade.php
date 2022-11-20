@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Male_Fashion Template">
-    <meta name="keywords" content="Male_Fashion, unica, creative, html">
+    <meta name="description" content="Fashion_Shop">
+    <meta name="keywords" content="Fashion_Shop, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Male-Fashion | Template</title>
@@ -176,29 +176,32 @@
                         </div>
                     </div>
                 @endforeach
-                @foreach ($hotSales as $product)
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales" style="display: none">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg"
-                                data-setbg="{{ asset('storage/product_img/' . $product->products['image']) }}">
-                                <input type="hidden" value="{{ $product->products->id }}" id="productId">
-                                <span class="label">Sale</span>
-                                <ul class="product__hover">
-                                    <li><a href="#" class="addToWishlist"><img
-                                                src="{{ asset('user/img/icon/heart.png') }}" alt=""></a></li>
-                                    <li><a href="{{ route('product#details', $product->id) }}"><img
-                                                src="{{ asset('user/img/icon/search.png') }}" alt=""></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="product__item__text">
-                                <h6>{{ $product->products['name'] }}</h6>
-                                <a href="#" class="add-cart">+ Add To Cart</a>
-                                <h5>${{ $product->products['price'] }}</h5>
+                @if ($hotSales[0]->products != null)
+                    @foreach ($hotSales as $product)
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales" style="display: none">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg"
+                                    data-setbg="{{ asset('storage/product_img/' . $product->products['image']) }}">
+                                    <input type="hidden" value="{{ $product->products->id }}" id="productId">
+                                    <span class="label">Sale</span>
+                                    <ul class="product__hover">
+                                        <li><a href="#" class="addToWishlist"><img
+                                                    src="{{ asset('user/img/icon/heart.png') }}" alt=""></a>
+                                        </li>
+                                        <li><a href="{{ route('product#details', $product->id) }}"><img
+                                                    src="{{ asset('user/img/icon/search.png') }}" alt=""></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="product__item__text">
+                                    <h6>{{ $product->products['name'] }}</h6>
+                                    <a href="#" class="add-cart">+ Add To Cart</a>
+                                    <h5>${{ $product->products['price'] }}</h5>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                @endif
             </div>
         </div>
     </section>
@@ -420,15 +423,15 @@
             })
         });
 
-        $('.shopNow').click(function(){
+        $('.shopNow').click(function() {
             event.preventDefault();
             $.ajax({
                 type: 'get',
                 url: '/user/ajax/shop',
-                success: function(response){
+                success: function(response) {
                     window.location.href = '/user/products/shop';
                 },
-                error: function(response){
+                error: function(response) {
                     $("#modelBtn").click();
                 }
             })

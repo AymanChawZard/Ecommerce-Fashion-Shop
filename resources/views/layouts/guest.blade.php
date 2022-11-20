@@ -12,6 +12,10 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        {{-- <link rel="stylesheet" href="{{ asset('public/build/assets/app.bcdfc260.css') }}"> --}}
+
+
     </head>
     <body>
         <div class="font-sans text-gray-900 antialiased">

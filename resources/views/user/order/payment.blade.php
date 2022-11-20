@@ -42,7 +42,7 @@
     <div class="container my-5">
 
         <div class="row">
-            <div class="card p-3 col-5 offset-4">
+            <div class="card p-3 col-md-5 offset-md-4">
                 <div class="panel panel-default credit-card-box">
                     <div class="panel-heading display-table">
                         <h3 class="panel-title">Payment Details</h3>

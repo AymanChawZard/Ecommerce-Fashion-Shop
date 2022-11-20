@@ -34,7 +34,7 @@ class AdminController extends Controller
         {
             $oldImg = User::where('id',$id)->first()->image;
 
-            $fileName = uniqid() . $request->file('image')->getClientOriginalName();
+            $fileName = uniqid().$request->file('image')->getClientOriginalName();
             $request->file('image')->storeAs('public/profile_img',$fileName);
             $data['image'] = $fileName;
 

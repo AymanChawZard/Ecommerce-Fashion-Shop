@@ -61,6 +61,9 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="mr-3">
+                        {{ $categories->links() }}
+                    </div>
                 </div>
             </div>
         </div>

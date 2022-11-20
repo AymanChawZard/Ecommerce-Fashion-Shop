@@ -67,7 +67,6 @@ class HomeController extends Controller
             }
 
             list($newArrivals,$bestSellers,$hotSales) = $this->getProducts();
-            // dd($bestSellers->toArray());
             // dd($hotSales->toArray());
 
             return view('user.home',compact('cart','totalPrice','newArrivals','bestSellers','hotSales'));
@@ -99,6 +98,7 @@ class HomeController extends Controller
         $bestSellers = Product::orderBy('order_count','desc')->take(8)->get();
 
         $rawProducts = OrderList::with('products')->orderBy('created_at','desc')->get();
+        // dd($rawProducts->toArray());
         $id = array();
         $hotSales = collect([]);
         foreach ($rawProducts as $item)

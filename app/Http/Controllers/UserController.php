@@ -52,6 +52,7 @@ class UserController extends Controller
 
                 $newImg = uniqid().$request->file('image')->getClientOriginalName();
                 $request->file('image')->storeAs('public/profile_img', $newImg);
+
                 $data['image'] = $newImg;
             }
         }

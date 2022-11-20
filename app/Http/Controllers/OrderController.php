@@ -167,7 +167,7 @@ class OrderController extends Controller
 
     //create unique id for orderId
     private function generateBarcodeNumber() {
-        $number = mt_rand(1000000000, 9999999999);
+        $number = mt_rand(100000000, 999999999);
 
         // call the same function if the barcode exists already
         if ($this->barcodeNumberExists($number)) {

@@ -71,6 +71,9 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="mr-3">
+                        {{ $products->links() }}
+                    </div>
                 </div>
             </div>
         </div>
