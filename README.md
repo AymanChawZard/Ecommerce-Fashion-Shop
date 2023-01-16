@@ -20,6 +20,12 @@ The Fashion Shop - A Laravel Fashion Shop Website Project is an open source ecom
 - Visa card integration
 - Mail system
 
+## Prerequisites
+
+- PHP >= 8.0
+- MySQL
+- Composer
+
 
 ## Installation Instructions
 
