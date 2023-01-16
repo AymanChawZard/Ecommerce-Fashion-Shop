@@ -45,6 +45,13 @@ Start the server
   php artisan serve
 ```
 
+## Build With
+
+- Laravel - A PHP Web Framework
+- MySQL - A relational database management system
+- Bootstrap - A CSS framework for styling and layout
+- Jquery - A JavaScript Library
+
 
 ## Website
 
