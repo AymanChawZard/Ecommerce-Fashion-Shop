@@ -56,3 +56,8 @@ Start the server
 ## Website
 
 The website is hosted at http://bypiccolo.com/ .
+
+## Template Credits
+
+- MaleFashion – Free Bootstrap 4 HTML5 eCommerce Website Template: The template was used to create the project's landing page.
+- Attribution: Colorlib
