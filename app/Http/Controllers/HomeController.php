@@ -39,6 +39,7 @@ class HomeController extends Controller
         }
         else
         {
+
             $cart = Cart::where('user_id', Auth::user()->id)->with('products')->get();
 
             $totalPrice = 0;
@@ -50,6 +51,8 @@ class HomeController extends Controller
             list($newArrivals,$bestSellers,$hotSales) = $this->getProducts();
 
             return view('user.home',compact('cart','totalPrice','newArrivals','bestSellers','hotSales'));
+
+
         }
     }
 
@@ -73,10 +76,19 @@ class HomeController extends Controller
         }
         else
         {
-            list($newArrivals,$bestSellers,$hotSales) = $this->getProducts();
+            if (Product::exists()) {
 
-            return view('user.home',compact('newArrivals','bestSellers','hotSales'));
+                list($newArrivals,$bestSellers,$hotSales) = $this->getProducts();
+
+                return view('user.home',compact('newArrivals','bestSellers','hotSales'));
+
+            } else {
+
+                return redirect()->route('login');
+
+            }
         }
+
     }
 
     //warning to login
